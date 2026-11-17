@@ -1,5 +1,6 @@
 // ==UserScript==
 // @name         Universal Toolbox
+// @author       Phantom-Dev
 // @namespace    http://tampermonkey.net/
 // @version      1.0
 // @description  Toolbox for any website
