@@ -1,6 +1,5 @@
 # Phantomdev-Projects
 ## Creator
-[Toolbox 1.0.txt](https://github.com/user-attachments/files/34985646/Toolbox.1.0.txt)
 
 Developed and maintained by **Phantom**.
 
