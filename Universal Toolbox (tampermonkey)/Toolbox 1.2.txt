@@ -1,0 +1,326 @@
+// ==UserScript==
+// @name         Universal Toolbox
+// @author       Phantom
+// @namespace    http://tampermonkey.net/
+// @version      1.1
+// @description  Toolbox for any website
+// @match        *://*/*
+// @grant        none
+// ==/UserScript==
+
+(function () {
+    'use strict';
+
+    const SETTINGS_KEY = 'toolboxSettings';
+
+    let settings = JSON.parse(localStorage.getItem(SETTINGS_KEY) || '{}');
+
+    settings.theme ??= 'green';
+    settings.hotkey ??= '0';
+    settings.x ??= null;
+    settings.y ??= null;
+
+
+    const gear = document.createElement('button');
+    gear.textContent = '🔧';
+    gear.style.position = 'fixed';
+    gear.style.bottom = '20px';
+    gear.style.right = '20px';
+    gear.style.width = '50px';
+    gear.style.height = '50px';
+    gear.style.borderRadius = '50%';
+    gear.style.fontSize = '22px';
+    gear.style.zIndex = '999999';
+    gear.style.cursor = 'pointer';
+    document.body.appendChild(gear);
+
+    const panel = document.createElement('div');
+    panel.style.position = 'fixed';
+    panel.style.bottom = '80px';
+    panel.style.right = '20px';
+    panel.style.width = '300px';
+    panel.style.maxHeight = '500px';
+    panel.style.overflowY = 'auto';
+    panel.style.padding = '10px';
+    panel.style.borderRadius = '10px';
+    panel.style.zIndex = '999999';
+    panel.style.display = 'none';
+    panel.style.fontFamily = 'Arial';
+
+    document.body.appendChild(panel);
+
+    if (settings.x !== null) {
+        panel.style.left = settings.x + 'px';
+        panel.style.top = settings.y + 'px';
+        panel.style.right = 'auto';
+        panel.style.bottom = 'auto';
+    }
+
+    gear.onclick = () => {
+        panel.style.display =
+            panel.style.display === 'none' ? 'block' : 'none';
+    };
+
+    const title = document.createElement('div');
+    title.textContent = '🔧 Toolbox';
+    title.style.fontWeight = 'bold';
+    title.style.cursor = 'move';
+    title.style.marginBottom = '10px';
+
+    panel.appendChild(title);
+
+    let dragging = false;
+    let offsetX = 0;
+    let offsetY = 0;
+
+    title.addEventListener('mousedown', e => {
+        dragging = true;
+        offsetX = e.clientX - panel.offsetLeft;
+        offsetY = e.clientY - panel.offsetTop;
+    });
+
+    document.addEventListener('mousemove', e => {
+        if (!dragging) return;
+
+        panel.style.left = e.clientX - offsetX + 'px';
+        panel.style.top = e.clientY - offsetY + 'px';
+        panel.style.right = 'auto';
+        panel.style.bottom = 'auto';
+    });
+
+    document.addEventListener('mouseup', () => {
+        if (!dragging) return;
+
+        dragging = false;
+
+        settings.x = panel.offsetLeft;
+        settings.y = panel.offsetTop;
+
+        save();
+    });
+
+    function section(name) {
+        const h = document.createElement('h4');
+        h.textContent = name;
+        h.style.marginBottom = '5px';
+        panel.appendChild(h);
+    }
+
+    function button(text, fn) {
+        const b = document.createElement('button');
+        b.textContent = text;
+        b.style.margin = '2px';
+        b.onclick = fn;
+        panel.appendChild(b);
+        return b;
+    }
+
+    section('🌐 Quick Links');
+
+    button('google', () => window.open('https://google.com'));
+    button('YouTube', () => window.open('https://youtube.com'));
+    button('Gmail', () => window.open('https://mail.google.com'));
+    button('MLA formatter', () => window.open('https://mla-formatter.netlify.app/'));
+    button('Myolsd', () => window.open('https://myapps.classlink.com/home'));
+    button('Drive', () => window.open('https://drive.google.com/drive/u/1/home'));
+
+    panel.appendChild(document.createElement('hr'));
+
+    section('⚡ Quick Actions');
+
+    button('update', () => location.reload());
+    button('Back', () => history.back());
+    button('Forward', () => history.forward());
+    button('Top', () => window.scrollTo(0, 0));
+    button('Bottom', () => window.scrollTo(0, document.body.scrollHeight));
+
+    button('Fullscreen', () => {
+        if (!document.fullscreenElement)
+            document.documentElement.requestFullscreen();
+        else
+            document.exitFullscreen();
+    });
+
+    panel.appendChild(document.createElement('hr'));
+
+    section('🎨 Appearance');
+
+    button('Dark Mode', () => {
+
+    document.documentElement.style.filter =
+        'invert(1) hue-rotate(180deg)';
+
+    document.querySelectorAll('img, video').forEach(el => {
+        el.style.filter =
+            'invert(1) hue-rotate(180deg)';
+    });
+
+});
+
+
+    button('Normal Mode', () => {
+        document.documentElement.style.filter = '';
+    });
+
+    button('Hide Images', () => {
+        document.querySelectorAll('img').forEach(img => {
+            img.style.display = 'none';
+        });
+    });
+
+    button('Show Images', () => {
+        document.querySelectorAll('img').forEach(img => {
+            img.style.display = '';
+        });
+    });
+
+    button('Text +', () => {
+        document.body.style.fontSize = 'larger';
+    });
+
+    button('Text -', () => {
+        document.body.style.fontSize = 'smaller';
+    });
+
+    panel.appendChild(document.createElement('hr'));
+
+    section('🔍 Search Selected Text');
+
+    function getSelected() {
+        return encodeURIComponent(window.getSelection().toString());
+    }
+
+    button('Google Search', () => {
+        const t = getSelected();
+        if (t) window.open(`https://www.google.com/search?q=${t}`);
+    });
+
+    button('YouTube Search', () => {
+        const t = getSelected();
+        if (t) window.open(`https://www.youtube.com/results?search_query=${t}`);
+    });
+
+    button('Wikipedia Search', () => {
+        const t = getSelected();
+        if (t) window.open(`https://en.wikipedia.org/wiki/Special:Search?search=${t}`);
+    });
+
+    panel.appendChild(document.createElement('hr'));
+
+    section('⚙ Settings');
+
+const themeSelect = document.createElement('select');
+
+button('Update', () => location.reload());
+
+button('Full Update', () => {
+    window.open('https://google.com');
+});
+/* =========================
+   THEME SELECTION
+   Change the color to any of the following (spelling must be exact)
+   ========================= */
+//green
+//blue
+//red
+//purple
+//orange
+//dark
+const selectedTheme = 'purple';
+
+/* =========================
+   THEMES
+   ========================= */
+
+const themes = {
+    green: {
+        bg: '#111',
+        border: 'lime',
+        text: 'lime'
+    },
+
+    blue: {
+        bg: '#111',
+        border: '#00aaff',
+        text: '#00aaff'
+    },
+
+    red: {
+        bg: '#111',
+        border: '#ff3333',
+        text: '#ff5555'
+    },
+
+    purple: {
+        bg: '#111',
+        border: '#a020f0',
+        text: '#c770ff'
+    },
+
+    orange: {
+        bg: '#111',
+        border: '#ff8800',
+        text: '#ffaa33'
+    },
+
+    dark: {
+        bg: '#111',
+        border: '#666',
+        text: '#fff'
+    }
+};
+
+/* =========================
+   APPLY THEME
+   ========================= */
+
+function applyTheme() {
+
+    const theme = themes[selectedTheme];
+
+    if (!theme) {
+        console.error('Invalid theme:', selectedTheme);
+        return;
+    }
+
+    panel.style.background = theme.bg;
+    panel.style.border = `2px solid ${theme.border}`;
+    panel.style.color = theme.text;
+}
+
+/* Apply on startup */
+applyTheme();
+console.log('Toolbox loaded');
+
+/* Hotkey */
+
+document.addEventListener("keydown", e => {
+
+    if (
+        e.target.tagName === "INPUT" ||
+        e.target.tagName === "TEXTAREA"
+    ) {
+        return;
+    }
+
+    if (
+        e.key === "0" ||
+        e.code === "Digit0" ||
+        e.code === "Numpad0"
+    ) {
+
+        if (!panel) {
+            console.log("Panel not found");
+            return;
+        }
+
+        panel.style.display =
+            panel.style.display === "none"
+                ? "block"
+                : "none";
+
+        console.log("0 key pressed");
+
+    }
+});
+})();
