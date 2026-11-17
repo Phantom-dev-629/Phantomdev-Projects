@@ -8,6 +8,8 @@ Building tools, experimenting with new ideas, and creating projects that make ev
 ⚡ Powered by creativity, customization, and code.
 
 # TamperMonky scripts
+Install the [Tampermonkey](https://www.tampermonkey.net/) browser extension to run this userscript.
+
 Click here for the latest version of my universal toolbox [Toolbox 1.2.txt](https://github.com/user-attachments/files/34985586/Toolbox.1.2.txt)
 
 ## earlier versions
