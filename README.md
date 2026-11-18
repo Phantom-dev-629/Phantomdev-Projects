@@ -10,7 +10,7 @@ Building tools, experimenting with new ideas, and creating projects that make ev
 # FTC code
 ##2026 Ozone Orange Biobuzz season
 
-[FTC2026OzoneOrangeTeleOpcode.txt](https://github.com/user-attachments/files/35034493/FTC2026OzoneOrangeTeleOpcode.txt)
+[FTC2026OzoneOrangeTeleOpcode](https://github.com/Phantom-dev-629/Phantomdev-Projects/blob/main/FTC%20Java%20code/FTC2026OzoneOrangeTeleOpcode.txt)
 
 # TamperMonky scripts
 Install the [Tampermonkey](https://www.tampermonkey.net/) browser extension to run this userscript.
