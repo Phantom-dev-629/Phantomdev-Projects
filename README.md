@@ -1,7 +1,7 @@
-[FTC2026OzoneOrangeTeleOpcode.txt](https://github.com/user-attachments/files/35034493/FTC2026OzoneOrangeTeleOpcode.txt)# Phantomdev-Projects
+# Phantomdev-Projects
 ## Creator
 
-Developed and maintained by **Phantom**.
+Developed and maintained by **Phantom-Dev**.
 
 Building tools, experimenting with new ideas, and creating projects that make everyday tasks easier.
 
@@ -9,7 +9,8 @@ Building tools, experimenting with new ideas, and creating projects that make ev
 
 # FTC code
 ##2026 Ozone Orange Biobuzz season
-[Uploading FTC2026OzoneOrangeTeleOpcode.txt…]()
+
+[FTC2026OzoneOrangeTeleOpcode.txt](https://github.com/user-attachments/files/35034493/FTC2026OzoneOrangeTeleOpcode.txt)
 
 # TamperMonky scripts
 Install the [Tampermonkey](https://www.tampermonkey.net/) browser extension to run this userscript.
