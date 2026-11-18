@@ -8,7 +8,7 @@ Building tools, experimenting with new ideas, and creating projects that make ev
 ⚡ Powered by creativity, customization, and code.
 
 # FTC code
-##2026 Ozone Orange Biobuzz season
+## 2026 Ozone Orange Biobuzz season
 
 [FTC2026OzoneOrangeTeleOpcode](https://github.com/Phantom-dev-629/Phantomdev-Projects/blob/main/FTC%20Java%20code/FTC2026OzoneOrangeTeleOpcode.txt)
 
