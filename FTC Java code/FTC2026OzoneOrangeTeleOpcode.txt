@@ -1,0 +1,179 @@
+package org.firstinspires.ftc.teamcode;
+
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.DcMotor;
+
+@TeleOp(name = "Max (Blocks to Java)")
+public class Max extends LinearOpMode {
+
+  private DcMotor Intake_Motre;
+  private DcMotor flywheely;
+  private DcMotor Flywheelfeeder;
+  private CRServo turretthibgy;
+  private DcMotor FrontLeft;
+  private DcMotor BackLeft;
+  private DcMotor BackRight;
+  private DcMotor FrontRight;
+
+  float RightStickX;
+  float LeftStickY;
+  float LeftStickX;
+  double Negative_drive_train_speed;
+  double Drive_Train_Speed;
+
+  /**
+   * Describe this function...
+   */
+  private void operator_functions() {
+    if (gamepad2.a) {
+      Intake_Motre.setPower(1);
+    }
+    if (gamepad2.b) {
+      Intake_Motre.setPower(-1);
+    }
+    if (gamepad2.dpad_down) {
+      Intake_Motre.setPower(0.2);
+    }
+    if (gamepad2.rightBumperWasPressed()) {
+      flywheely.setPower(0.7);
+      telemetry.addLine("hello world");
+    }
+    if (gamepad2.leftBumperWasPressed()) {
+      flywheely.setPower(0);
+    }
+    if (gamepad2.yWasPressed()) {
+      Flywheelfeeder.setPower(1);
+    }
+    if (gamepad2.yWasReleased()) {
+      Flywheelfeeder.setPower(0);
+    }
+    if (gamepad2.dpad_left) {
+      turretthibgy.setPower(1);
+    }
+    if (gamepad2.dpad_right) {
+      turretthibgy.setPower(-1);
+    }
+    if (gamepad2.dpadLeftWasReleased()) {
+      turretthibgy.setPower(0);
+    }
+    if (gamepad2.dpadRightWasReleased()) {
+      turretthibgy.setPower(0);
+    }
+  }
+
+  /**
+   * Describe this function...
+   */
+  private void variables() {
+    RightStickX = gamepad1.right_stick_x;
+    LeftStickY = gamepad1.left_stick_y;
+    LeftStickX = gamepad1.left_stick_x;
+    if (gamepad1.x) {
+      Drive_Train_Speed = 0.3;
+      Negative_drive_train_speed = -0.3;
+    }
+    if (gamepad1.a) {
+      Drive_Train_Speed = 0.6;
+      Negative_drive_train_speed = -0.6;
+    }
+    if (gamepad1.b) {
+      Drive_Train_Speed = 1;
+      Negative_drive_train_speed = -1;
+    }
+  }
+
+  /**
+   * This sample contains the bare minimum Blocks for any regular OpMode. The 3 blue
+   * Comment Blocks show where to place Initialization code (runs once, after touching the
+   * DS INIT button, and before touching the DS Start arrow), Run code (runs once, after
+   * touching Start), and Loop code (runs repeatedly while the OpMode is active, namely not
+   * Stopped).
+   */
+  @Override
+  public void runOpMode() {
+    Intake_Motre = hardwareMap.get(DcMotor.class, "Intake_Motre");
+    flywheely = hardwareMap.get(DcMotor.class, "flywheely");
+    Flywheelfeeder = hardwareMap.get(DcMotor.class, "Flywheelfeeder");
+    turretthibgy = hardwareMap.get(CRServo.class, "turretthibgy");
+    FrontLeft = hardwareMap.get(DcMotor.class, "FrontLeft");
+    BackLeft = hardwareMap.get(DcMotor.class, "BackLeft");
+    BackRight = hardwareMap.get(DcMotor.class, "BackRight");
+    FrontRight = hardwareMap.get(DcMotor.class, "FrontRight");
+
+    // Put initialization blocks here.
+    waitForStart();
+    if (opModeIsActive()) {
+      // Put run blocks here.
+    }
+    while (opModeIsActive()) {
+      // Put loop blocks here.
+      movement();
+      variables();
+      operator_functions();
+      telemetry.update();
+    }
+  }
+
+  /**
+   * Describe this function...
+   */
+  private void movement() {
+    if (LeftStickY < -0.5) {
+      FrontLeft.setPower(Negative_drive_train_speed);
+      BackLeft.setPower(Drive_Train_Speed);
+      BackRight.setPower(Negative_drive_train_speed);
+      FrontRight.setPower(Negative_drive_train_speed);
+    } else {
+      FrontLeft.setPower(0);
+      BackLeft.setPower(0);
+      BackRight.setPower(0);
+      FrontRight.setPower(0);
+    }
+    if (LeftStickY > 0.5) {
+      FrontLeft.setPower(Drive_Train_Speed);
+      BackLeft.setPower(Negative_drive_train_speed);
+      BackRight.setPower(Drive_Train_Speed);
+      FrontRight.setPower(Drive_Train_Speed);
+    } else {
+      FrontLeft.setPower(0);
+      BackLeft.setPower(0);
+      BackRight.setPower(0);
+      FrontRight.setPower(0);
+    }
+    if (RightStickX > 0.5) {
+      FrontLeft.setPower(Negative_drive_train_speed);
+      BackLeft.setPower(Drive_Train_Speed);
+      BackRight.setPower(Drive_Train_Speed);
+      FrontRight.setPower(Drive_Train_Speed);
+    } else {
+      FrontLeft.setPower(0);
+      BackLeft.setPower(0);
+      BackRight.setPower(0);
+      FrontRight.setPower(0);
+    }
+    if (RightStickX < -0.5) {
+      FrontLeft.setPower(Drive_Train_Speed);
+      BackLeft.setPower(Negative_drive_train_speed);
+      BackRight.setPower(Negative_drive_train_speed);
+      FrontRight.setPower(Negative_drive_train_speed);
+    } else {
+      FrontLeft.setPower(0);
+      BackLeft.setPower(0);
+      BackRight.setPower(0);
+      FrontRight.setPower(0);
+    }
+    if (LeftStickX < -0.5) {
+      FrontLeft.setPower(Negative_drive_train_speed);
+      BackLeft.setPower(Drive_Train_Speed);
+      BackRight.setPower(Negative_drive_train_speed);
+      FrontRight.setPower(Negative_drive_train_speed);
+    } else {
+      FrontLeft.setPower(0);
+      BackLeft.setPower(0);
+      BackRight.setPower(0);
+      FrontRight.setPower(0);
+    }
+  }
+}
