@@ -17,6 +17,8 @@ Install the [Tampermonkey](https://www.tampermonkey.net/) browser extension to r
 
 Click here for the latest version of my universal toolbox [Toolbox 1.3.txt](https://github.com/user-attachments/files/35171492/Toolbox.1.3.txt)
 
+to suggest new features I should add click [here](https://forms.gle/k3tTYPdorvKxhKSo9)
+
 To learn how to Install and customize your toolbox click here
 ## earlier versions
 
