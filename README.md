@@ -15,7 +15,8 @@ Building tools, experimenting with new ideas, and creating projects that make ev
 # TamperMonky scripts
 Install the [Tampermonkey](https://www.tampermonkey.net/) browser extension to run this userscript.
 
-Click here for the latest version of my universal toolbox [Toolbox 1.2.txt](https://github.com/user-attachments/files/34985586/Toolbox.1.2.txt)
+Click here for the latest version of my universal toolbox [Toolbox 1.3.txt](https://github.com/user-attachments/files/35171492/Toolbox.1.3.txt)
+
 To learn how to Install and customize your toolbox click here
 ## earlier versions
 
