@@ -1,4 +1,4 @@
-[Toolbox 1.2.txt](https://github.com/user-attachments/files/35171541/Toolbox.1.2.txt)# Phantomdev-Projects
+# Phantomdev-Projects
 ## Creator
 
 Developed and maintained by **Phantom-Dev**.
