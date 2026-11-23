@@ -22,7 +22,7 @@ to suggest new features I should add click [here](https://forms.gle/k3tTYPdorvKx
 To learn how to Install and customize your toolbox click here
 ## earlier versions
 
-[Toolbox 1.2.txt]([https://github.com/user-attachments/files/35171541/Toolbox.1.2.txt](https://github.com/Phantom-dev-629/Phantomdev-Projects/blob/main/Universal%20Toolbox%20(tampermonkey)/Toolbox%201.2.txt)
+[Toolbox 1.2.txt](https://github.com/Phantom-dev-629/Phantomdev-Projects/blob/main/Universal%20Toolbox%20(tampermonkey)/Toolbox%201.2.txt)
 
 [Toolbox 1.1.txt](https://github.com/Phantom-dev-629/Phantomdev-Projects/blob/main/Universal%20Toolbox%20(tampermonkey)/Toolbox%201.1.txt)
 
