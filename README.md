@@ -15,16 +15,16 @@ Building tools, experimenting with new ideas, and creating projects that make ev
 # TamperMonky scripts
 Install the [Tampermonkey](https://www.tampermonkey.net/) browser extension to run this userscript.
 
-Click here for the latest version of my universal toolbox [Toolbox 1.3.txt](https://github.com/user-attachments/files/35171492/Toolbox.1.3.txt)
+Click here for the latest version of my universal toolbox [Toolbox 1.3](https://github.com/Phantom-dev-629/Phantomdev-Projects/blob/main/Universal%20Toolbox%20(tampermonkey)/Toolbox%201.3.txt)
 
 to suggest new features I should add click [here](https://forms.gle/k3tTYPdorvKxhKSo9)
 
 To learn how to Install and customize your toolbox click here
 ## earlier versions
 
-[Toolbox 1.2.txt](https://github.com/user-attachments/files/35171541/Toolbox.1.2.txt)
+[Toolbox 1.2.txt]([https://github.com/user-attachments/files/35171541/Toolbox.1.2.txt](https://github.com/Phantom-dev-629/Phantomdev-Projects/blob/main/Universal%20Toolbox%20(tampermonkey)/Toolbox%201.2.txt)
 
-[Toolbox 1.1.txt](https://github.com/user-attachments/files/34985636/Toolbox.1.1.txt)
+[Toolbox 1.1.txt](https://github.com/Phantom-dev-629/Phantomdev-Projects/blob/main/Universal%20Toolbox%20(tampermonkey)/Toolbox%201.1.txt)
 
-[Toolbox 1.0.txt](https://github.com/user-attachments/files/34985659/Toolbox.1.0.txt)
+[Toolbox 1.0](https://github.com/Phantom-dev-629/Phantomdev-Projects/blob/main/Universal%20Toolbox%20(tampermonkey)/Toolbox%201.0.txt)
 
