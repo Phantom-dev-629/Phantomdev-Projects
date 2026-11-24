@@ -33,7 +33,33 @@ Official TeleOp Java code used during the FTC season.
 [FTC2026OzoneOrangeTeleOpcode](https://github.com/Phantom-dev-629/Phantomdev-Projects/blob/main/FTC%20Java%20code/FTC2026OzoneOrangeTeleOpcode.txt)
 
 ---
+# 💬 Phantom Chat
 
+Phantom Chat is a real-time messaging platform built with **Node.js** and **Socket.IO**. It allows users on the same local network to communicate instantly through a browser-based interface without needing external messaging services.
+
+Designed as a networking and web development project, Phantom Chat demonstrates real-time data synchronization, client-server communication, and lightweight web application design.
+
+### Highlights
+
+✅ Real-time messaging
+
+✅ Multi-user support
+
+✅ Socket.IO powered communication
+
+✅ Fast message synchronization
+
+✅ Browser-based interface
+
+✅ Localhost and LAN support
+
+✅ Fully customizable source code
+
+### Repository
+
+- Main Project: https://github.com/Phantom-dev-629/Phantomdev-Projects/tree/main/Chat%20app
+- JS & JSON Files: https://github.com/Phantom-dev-629/Phantomdev-Projects/tree/main/Chat%20app/Json%20and%20Js%20folder%20for%20chat%20app
+- Public Files: https://github.com/Phantom-dev-629/Phantomdev-Projects/tree/main/Chat%20app/Public
 # 🛠 Universal Toolbox (Tampermonkey)
 
 The Universal Toolbox is a customizable browser userscript designed to add useful tools and quality-of-life features to websites.
