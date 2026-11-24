@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      font-family: system-ui, sans-serif;
+      background: #f0f2f5;
+    }
+    header {
+      background: #6366f1;
+      color: #fff;
+      padding: .85rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+    header h1 { font-size: 1.1rem; font-weight: 700; }
+    #userCount { font-size: .85rem; opacity: .85; }
+    #messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+    }
+    .msg {
+      max-width: 70%;
+      padding: .55rem .85rem;
+      border-radius: 18px;
+      font-size: .95rem;
+      line-height: 1.4;
+      word-break: break-word;
+    }
+    .msg .meta { font-size: .72rem; margin-bottom: .2rem; opacity: .65; }
+    .msg.other {
+      background: #fff;
+      box-shadow: 0 1px 4px rgba(0,0,0,.07);
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+    }
+    .msg.mine {
+      background: #6366f1;
+      color: #fff;
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+    }
+    .msg.mine .meta { opacity: .7; }
+    .msg.system {
+      background: transparent;
+      color: #888;
+      font-size: .8rem;
+      align-self: center;
+      padding: .2rem .6rem;
+      font-style: italic;
+    }
+    #input-bar {
+      display: flex;
+      gap: .6rem;
+      padding: .85rem 1rem;
+      background: #fff;
+      border-top: 1px solid #e5e7eb;
+      flex-shrink: 0;
+    }
+    #msg {
+      flex: 1;
+      padding: .6rem .85rem;
+      border: 1.5px solid #d1d5db;
+      border-radius: 999px;
+      font-size: .95rem;
+      outline: none;
+      transition: border-color .15s;
+    }
+    #msg:focus { border-color: #6366f1; }
+    #sendBtn {
+      padding: .6rem 1.2rem;
+      background: #6366f1;
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      font-size: .95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .15s;
+    }
+    #sendBtn:hover  { background: #4f46e5; }
+    #sendBtn:active { background: #4338ca; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Chat Room</h1>
+    <span id="userCount">0 online</span>
+  </header>
+
+  <div id="messages"></div>
+
+  <div id="input-bar">
+    <input id="msg" type="text" placeholder="Type a message…" maxlength="500" autocomplete="off">
+    <button id="sendBtn">Send</button>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const username = sessionStorage.getItem("chatName") || localStorage.getItem("chatName") || localStorage.getItem("name");
+    if (!username) window.location.replace("index.html");
+
+    const socket      = io();
+    const msgList     = document.getElementById("messages");
+    const msgInput    = document.getElementById("msg");
+    const sendBtn     = document.getElementById("sendBtn");
+    const userCountEl = document.getElementById("userCount");
+
+    function formatTime(ts) {
+      return new Date(ts).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+    }
+
+    function appendMessage({ user, text, timestamp }) {
+      const isSystem = user === "System";
+      const isMine   = !isSystem && user === username;
+      const div = document.createElement("div");
+      div.classList.add("msg", isSystem ? "system" : isMine ? "mine" : "other");
+      if (!isSystem) {
+        const meta = document.createElement("div");
+        meta.classList.add("meta");
+        meta.textContent = `${isMine ? "You" : user}  ${formatTime(timestamp)}`;
+        div.appendChild(meta);
+      }
+      const body = document.createElement("div");
+      body.textContent = text;
+      div.appendChild(body);
+      msgList.appendChild(div);
+      msgList.scrollTop = msgList.scrollHeight;
+    }
+
+    socket.on("connect", () => socket.emit("join", username));
+    socket.on("message", appendMessage);
+    socket.on("userCount", (n) => { userCountEl.textContent = `${n} online`; });
+    socket.on("disconnect", () => appendMessage({ user: "System", text: "Disconnected. Reconnecting…", timestamp: Date.now() }));
+
+    function send() {
+      const text = msgInput.value.trim();
+      if (!text) return;
+      socket.emit("message", { text });
+      msgInput.value = "";
+      msgInput.focus();
+    }
+
+    sendBtn.addEventListener("click", send);
+    msgInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(); }
+    });
+  </script>
+</body>
+</html>
