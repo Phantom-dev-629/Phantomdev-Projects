@@ -84,7 +84,7 @@ Download the latest version of the Toolbox:
 
 ---
 
-# ✨ Features
+## ✨ Features
 
 The Universal Toolbox includes:
 
@@ -99,7 +99,7 @@ More features are added regularly.
 
 ---
 
-# 💡 Suggest a New Feature
+## 💡 Suggest a New Feature
 
 Have an idea that would make the Toolbox better?
 
@@ -109,7 +109,7 @@ Submit your suggestion here:
 
 ---
 
-# 🎨 Custom Toolbox Setup
+## 🎨 Custom Toolbox Setup
 
 Need help customizing your Toolbox?
 
@@ -119,7 +119,7 @@ If customization isn't working correctly, request a personalized setup here:
 
 ---
 
-# 📚 Previous Versions
+## 📚 Previous Versions
 
 ### Toolbox 1.2
 
@@ -135,7 +135,7 @@ If customization isn't working correctly, request a personalized setup here:
 
 ---
 
-# 📈 Future Plans
+## 📈 Future Plans
 
 Current goals for future updates include:
 
